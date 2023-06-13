@@ -22,6 +22,11 @@ jobs:
     - name: Run tests with coverage
       run: |
         cargo tarpaulin --out Xml
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v3
+      with:
+        name: code_coverage_report
+        path: cobertura.xml
   getting-coverage-report:
     runs-on: ubuntu-latest
     needs: unit-test-coverage
@@ -30,6 +35,10 @@ jobs:
       output2: ${{ steps.lines-covered.outputs.info }}
       output3: ${{ steps.lines-covered.outputs.info}} / ${{ steps.lines-valid.outputs.info }} * 100
     steps:
+      - name: Download coverage report
+        uses: actions/download-artifact@v3
+        with:
+          name: code_coverage_report
       - name: AAAListing files
         run: |
           echo "?????????????????????????????????????????????????"
