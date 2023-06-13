@@ -63,7 +63,7 @@ fn test_validate_user_when_fail() {
 #[test]
 #[should_panic]
 fn test_validate_user_when_it_doesnt_exists() {
-    let user = my_project::validate_user(NONEXISTENT);
+    let _ = my_project::validate_user(NONEXISTENT);
 }
 
 #[test]
@@ -75,7 +75,7 @@ fn test_if_user_exists_when_pass() {
 #[test]
 #[should_panic]
 fn test_if_user_exists_when_it_doesnt_exists() {
-    let user = my_project::if_user_exists(NONEXISTENT);
+    let _ = my_project::if_user_exists(NONEXISTENT);
 }
 
 #[test]
@@ -87,7 +87,7 @@ fn test_expect_user_when_pass() {
 #[test]
 #[should_panic]
 fn test_expect_user_when_it_doesnt_exists() {
-    let user = my_project::expect_user(NONEXISTENT);
+    let _ = my_project::expect_user(NONEXISTENT);
 }
 
 #[test]
