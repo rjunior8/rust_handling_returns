@@ -43,6 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: calculate-coverage-percentage
     steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: .github/badges
+          path: .github/badges
       - name: Generate the badge SVG image
         uses: emibcn/badge-action@v1
         with:
