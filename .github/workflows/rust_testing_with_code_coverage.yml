@@ -33,5 +33,5 @@ jobs:
     needs: unit-test-coverage
     steps:
       - env:
-          COVERAGE_IN_PERCENTAGE: ${{needs.unit-test-coverage.outputs.code_coverage}} * 100
-        run: echo "$COVERAGE_IN_PERCENTAGE"
+          COVERAGE_IN_PERCENTAGE: ${{needs.unit-test-coverage.outputs.code_coverage}}
+        run: echo $(( $COVERAGE_IN_PERCENTAGE * 100))
