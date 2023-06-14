@@ -48,6 +48,7 @@ jobs:
           ref: main
           path: badges
           persist-credentials: false
+          fetch-depth: 0
       - name: Generate the badge SVG image
         uses: emibcn/badge-action@v1
         id: badge
