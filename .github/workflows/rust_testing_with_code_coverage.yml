@@ -67,7 +67,7 @@ jobs:
           mkdir -p main
           mv test-coverage.svg main
           git add main/test-coverage.svg
-          git commit -a -m "Add changes"
+          git commit -a -m "Add changes" || true
       - name: Push badge commit
         uses: ad-m/github-push-action@master
         with:
