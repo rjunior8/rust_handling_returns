@@ -47,7 +47,7 @@ jobs:
         with:
           ref: main
           path: badges
-          persist-credentials: true
+          persist-credentials: false
       - name: Generate the badge SVG image
         uses: emibcn/badge-action@v1
         id: badge
