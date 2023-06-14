@@ -47,6 +47,8 @@ jobs:
         with:
           ref: main
           path: badges
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          persist-credentials: true
       - name: Generate the badge SVG image
         uses: emibcn/badge-action@v1
         id: badge
@@ -60,17 +62,12 @@ jobs:
           FILE: 'test-coverage.svg'
         working-directory: ./badges
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          mkdir -p main
-          mv "${FILE}" main
-          git add "main/${FILE}"
-
-          # Will give error if badge did not changed
-          git commit -m "Add/Update badge" || true
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Add changes"
       - name: Push badge commit
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          ssh: true
+          branch: ${{ github.ref }}
           directory: badges
