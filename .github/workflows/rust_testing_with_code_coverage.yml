@@ -45,12 +45,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          ref: .github/badges
-          path: .github/badges
+          ref: badges
+          path: badges
       - name: Generate the badge SVG image
         uses: emibcn/badge-action@v1
         with:
           label: 'Test coverage'
           status: ${{ needs.calculate-coverage-percentage.outputs.code_coverage_percentage }}
           color: 'blue,555,daf'
-          path: .github/badges/test-coverage.svg
+          path: badges/test-coverage.svg
