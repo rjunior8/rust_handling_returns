@@ -26,7 +26,7 @@ jobs:
         cargo tarpaulin --out Xml
     - id: coverage_in_percentage
       run: |
-        COVERAGE=$(cat cobertura.xml | grep -oP '(?<=line-rate=").*(?=" branches-covered)')
+        COVERAGE=$(( $(cat cobertura.xml | grep -oP '(?<=line-rate=").*(?=" branches-covered)') ))
         echo "coverage=${COVERAGE}" >> "$GITHUB_OUTPUT"
   calculate-coverage-percentage:
     runs-on: ubuntu-latest
