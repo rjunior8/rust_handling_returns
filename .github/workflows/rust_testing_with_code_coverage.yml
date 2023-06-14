@@ -53,7 +53,7 @@ jobs:
         uses: emibcn/badge-action@v1
         id: badge
         with:
-          label: 'Test coverage'
+          label: 'Code Coverage'
           status: ${{ needs.calculate-coverage-percentage.outputs.code_coverage_percentage }}
           color: 'blue,555,daf'
           path: badges/test-coverage.svg
