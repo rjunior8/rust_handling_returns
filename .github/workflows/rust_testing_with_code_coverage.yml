@@ -47,7 +47,6 @@ jobs:
         with:
           ref: main
           path: badges
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
           persist-credentials: true
       - name: Generate the badge SVG image
         uses: emibcn/badge-action@v1
@@ -71,6 +70,6 @@ jobs:
       - name: Push badge commit
         uses: ad-m/github-push-action@master
         with:
-          ssh: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
           directory: badges
