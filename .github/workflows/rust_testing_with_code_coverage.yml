@@ -35,10 +35,10 @@ jobs:
     outputs:
       code_coverage_percentage: ${{ steps.percentage.outputs.percentage }}
     steps:
-      - env:
-          COVERAGE_IN_PERCENTAGE: ${{needs.unit-test-coverage.outputs.code_coverage}}
-      - id: percentage
-        run: echo "percentage=${COVERAGE_IN_PERCENTAGE}%" >> "$GITHUB_OUTPUT"
+    - id: percentage
+      run: |
+        COVERAGE_IN_PERCENTAGE=${{needs.unit-test-coverage.outputs.code_coverage}}
+        echo "percentage=${COVERAGE_IN_PERCENTAGE}%" >> "$GITHUB_OUTPUT"
   create-coverage-badge:
     runs-on: ubuntu-latest
     needs: calculate-coverage-percentage
