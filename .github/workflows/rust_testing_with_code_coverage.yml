@@ -49,4 +49,4 @@ jobs:
           label: 'Test coverage'
           status: ${{ needs.calculate-coverage-percentage.outputs.code_coverage_percentage }}
           color: 'blue,555,daf'
-          path: ./badges/test-coverage.svg
+          path: ${{ github.workspace }}/.github/badges/test-coverage.svg
