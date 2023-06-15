@@ -38,7 +38,7 @@ jobs:
     - id: percentage
       run: |
         COVERAGE_IN_PERCENTAGE=${{needs.unit-test-coverage.outputs.code_coverage}}
-        echo "percentage=${COVERAGE_IN_PERCENTAGE}%" >> "$GITHUB_OUTPUT"
+        echo "percentage=${COVERAGE_IN_PERCENTAGE}" >> "$GITHUB_OUTPUT"
   create-coverage-badge:
     runs-on: ubuntu-latest
     needs: calculate-coverage-percentage
@@ -54,7 +54,7 @@ jobs:
         id: badge
         with:
           label: 'Code Coverage'
-          status: ${{ needs.calculate-coverage-percentage.outputs.code_coverage_percentage }}
+          status: ${{ needs.calculate-coverage-percentage.outputs.code_coverage_percentage }}%
           color: ${{
             needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 90 && 'green'              ||
             needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 80 && 'yellow,green'       ||
