@@ -55,7 +55,16 @@ jobs:
         with:
           label: 'Code Coverage'
           status: ${{ needs.calculate-coverage-percentage.outputs.code_coverage_percentage }}
-          color: 'blue,555,daf'
+          color: ${{
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 90 && 'green'              ||
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 80 && 'yellow,green'       ||
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 70 && 'yellow'             ||
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 60 && 'orange,yellow'      ||
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 50 && 'orange'             ||
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 40 && 'red,orange'         ||
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 30 && 'red,red,orange'     ||
+            needs.calculate-coverage-percentage.outputs.code_coverage_percentage > 20 && 'red,red,red,orange' ||
+            'red' }}
           path: badges/test-coverage.svg
       - name: Commit badge
         env:
