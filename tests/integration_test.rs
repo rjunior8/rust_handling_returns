@@ -100,8 +100,8 @@ fn test_get_user_when_fail() {
     assert_eq!(Err(String::from("Invalid user!")), my_project::get_user(NONEXISTENT));
 }
 
-// #[test]
-// fn test_to_borrow_when_pass() {
-//     let my_string = my_project::to_borrow();
-//     assert_eq!(String::from("my_string"), my_string);
-// }
+#[test]
+fn test_to_borrow_when_pass() {
+    let my_string = my_project::to_borrow();
+    assert_eq!(String::from("my_string"), my_string);
+}
