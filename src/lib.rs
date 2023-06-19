@@ -1,3 +1,6 @@
+use std::fmt::Error;
+use std::sync::Arc;
+
 struct Invalidation;
 
 trait Raise {
@@ -11,7 +14,9 @@ impl Raise for Invalidation {
 }
 
 pub fn get_status(username: &str) -> Option<&str> {
-    let users: Vec<&str> = vec!["Joao", "Pedro", "Maria"];
+    // let users: Vec<&str> = vec!["Joao", "Pedro", "Maria"];
+    // let users: [&str; 3] = ["Joao", "Pedro", "Maria"];
+    let users = Arc::new(vec!["Joao", "Pedro", "Maria"]);
 
     if !users.iter().any(|&user| user == username) {
         return None;
@@ -65,7 +70,7 @@ pub fn expect_user(username: &str) -> &str {
     user
 }
 
-pub fn get_user(username: &str) -> Result<&str, String>{
+pub fn get_user(username: &str) -> Result<&str, String> {
     let found_user = get_status_result(username);
     match found_user {
         Ok(user) => Ok(user),
@@ -73,14 +78,28 @@ pub fn get_user(username: &str) -> Result<&str, String>{
     }
 }
 
+pub fn get_user_2(username: &str) -> Result<&str, String> {
+    let found_user = get_status_result(username);
+    match found_user {
+        Ok(user) => Ok(user),
+        Err(e) => Err(e)
+    }
+}
+
+pub fn get_user_using_question_mark(username: &str) -> Result<&str, String> {
+    let user = get_user(username)?;
+    Ok(user)
+}
+
 pub fn to_borrow() -> String {
     let my_string: String = String::from("my_string");
-    println!("{}", my_string);
-    to_owner(&my_string);
-    println!("{}", my_string);
+    println!("Before to borrow: {}", my_string);
+    to_take_borrowed(&my_string);
+    println!("After to borrow: {}", my_string);
+    println!("Borrowed successfully!");
     my_string
 }
 
-fn to_owner(value: &String) {
+fn to_take_borrowed(value: &String) {
     println!("{}", value);
 }
